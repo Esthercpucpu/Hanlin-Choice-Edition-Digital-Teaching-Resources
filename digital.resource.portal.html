@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>翰林 Choice 版數位教學資源</title>
+    <style>
+        :root {
+            /* === 高級美式復古色盤 (Varsity Vintage) === */
+            --content-bg: #F4EFE6;       /* 網頁背景：溫暖奶油羊皮紙色 */
+            --color-a: #1E2D3B;          /* 大標題：復古海軍藍 (Oxford Blue) */
+            --color-b: #3D5A80;          /* 標籤列：復古藍色 */
+            --section-bg: #EAE3D3;       /* 區域底色：復古卡其/燕麥色 */
+            --section-border: #3D5A80;   /* 區域線條：復古藍色 */
+            
+            /* 按鈕配色：乾淨的復古橘色系 */
+            --btn-main: #D68C45;         /* 大按鈕/包覆底色：復古橘色 */
+            --btn-sub: #BE7634;          /* 小按鈕：調淺的焦糖橘，確保白字清晰 */
+            --radius: 6px;               /* 復古風圓角 */
+        }
+
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background-color: var(--content-bg);
+            margin: 0;
+            padding: 40px;
+            color: #2c3e50;
+        }
+
+        /* 標題區樣式 */
+        .header {
+            margin-bottom: 40px;
+            border-left: 6px solid var(--color-b);
+            padding-left: 20px;
+        }
+        .header h2 {
+            font-size: 1.3rem;
+            color: var(--color-a);
+            margin: 0;
+            opacity: 0.85;
+            letter-spacing: 1px;
+        }
+        .header h1 {
+            font-family: Georgia, "Times New Roman", "PingFang TC", serif;
+            font-size: 2.8rem;
+            color: var(--color-a);
+            margin: 5px 0 0 0;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        /* 標籤導覽列 */
+        .tab-container {
+            display: flex;
+            background-color: var(--color-b);
+            padding: 8px 10px 0 10px;
+            gap: 5px;
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
+        .tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: bold;
+            transition: all 0.2s;
+            border-radius: var(--radius) var(--radius) 0 0;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+        .tab:hover {
+            color: #ffffff;
+            background-color: rgba(255,255,255,0.15);
+        }
+        .tab.active {
+            background-color: var(--content-bg);
+            color: var(--color-b);
+            opacity: 1;
+        }
+
+        /* 內容區塊 */
+        .tab-content {
+            display: none; /* 預設全部隱藏 */
+            padding: 30px 0;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 區域標題長條 */
+        .section-bar {
+            background-color: var(--section-bg);
+            color: var(--color-a);
+            padding: 12px 20px;
+            margin: 30px 0 15px 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-left: 5px solid var(--section-border);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            letter-spacing: 1px;
+        }
+
+        /* 按鈕群組佈局 */
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 5px;
+            align-items: stretch;
+        }
+
+        /* 獨立大按鈕樣式 */
+        .btn-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            background-color: var(--btn-main);
+            color: #F4EFE6 !important; /* 奶油白文字 */
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: var(--radius);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+            border: none;
+            letter-spacing: 1px;
+        }
+        .btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(214, 140, 69, 0.4);
+            filter: brightness(1.05);
+        }
+
+        /* 組合容器 */
+        .combo-box {
+            display: flex;
+            background-color: var(--btn-main);
+            border-radius: var(--radius);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .combo-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(214, 140, 69, 0.4);
+        }
+        .combo-label {
+            color: #F4EFE6;
+            padding: 12px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border-right: 1px solid rgba(244, 239, 230, 0.2);
+            letter-spacing: 1px;
+        }
+        
+        /* 組合按鈕小字註明樣式 */
+        .combo-note {
+            font-size: 0.75rem;
+            font-weight: normal;
+            margin-left: 8px;
+            opacity: 0.85;
+            letter-spacing: 0;
+        }
+
+        .sub-btn-group {
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* 小按鈕樣式 */
+        .sub-btn {
+            background-color: var(--btn-sub);
+            color: #F4EFE6; 
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(244, 239, 230, 0.15);
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+        }
+        .sub-btn:hover {
+            background-color: #D68C45;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .mt-0 { margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>翰林 Choice 版數位教學資源</h2>
+        <h1>B1 U1 Freshmen Rock!</h1>
+    </div>
+
+    <div class="tab-container">
+        <div class="tab" onclick="openTab(event, 'reading')">READING</div>
+        <div class="tab" onclick="openTab(event, 'vocab')">VOCABULARY</div>
+        <div class="tab" onclick="openTab(event, 'grammar')">GRAMMAR FOCUS</div>
+        <div class="tab" onclick="openTab(event, 'listening')">LISTENING</div>
+        <div class="tab" onclick="openTab(event, 'conversation')">CONVERSATION</div>
+        <div class="tab" onclick="openTab(event, 'others')">其他常用資源</div>
+    </div>
+
+    <div id="reading" class="tab-content">
+        <div class="section-bar mt-0">影音資源</div>
+        <div class="button-group">
+            <div class="combo-box">
+                <div class="combo-label">課文動畫</div>
+                <div class="sub-btn-group">
+                    <a href="https://youtu.be/524IQMwhe8E?si=M8CqWhaoM4DVE9Lm" target="_blank" class="sub-btn">無字幕</a>
+                    <a href="https://youtu.be/W2CjnSci3LE?si=-en0QjLXjNH7b7dC" target="_blank" class="sub-btn">雙語字幕</a>
+                    <a href="#" class="sub-btn">英文字幕(維修中)</a>
+                </div>
+            </div>
+            <a href="https://player.hle.com.tw/vpc/playlist.html?volume=%E7%AC%AC%E4%B8%80%E5%86%8AC%E7%89%88&autoplay=null&repeat=null&unit=L1" target="_blank" class="btn-main">課文聆聽</a>
+            <div class="combo-box">
+                <div class="combo-label">課文主題補充影片</div>
+                <div class="sub-btn-group">
+                    <a href="https://www.youtube.com/watch?v=aco55YFtkW8&list=PL0ZsjItttKI6_an3weaGko9d-yL3qjfZ3" target="_blank" class="sub-btn">觀看影片</a>
+                    <a href="https://docs.google.com/document/d/1WRFMRNatOlL13YBBUWkkmqZ00Oy01L2e/edit#heading=h.1n9yajbizjgu" target="_blank" class="sub-btn">學習單</a>
+                </div>
+            </div>
+            <a href="https://drive.google.com/drive/folders/1cFzGAMEJg2MvZ49Z3xj-NKo_3IgiZPhN" target="_blank" class="btn-main">課文教學影片</a>
+        </div>
+
+        <div class="section-bar">互動遊戲</div>
+        <div class="button-group">
+            <a href="https://qt.hle.com.tw/material.html?demo=true&entry=play-now&tt=Vivid&tid=114_1_VHE_TA_1_7&platform=Hanlin_Ebook" target="_blank" class="btn-main">影片停看聽</a>
+            <a href="https://website.hle.com.tw/ven/B1/%E6%99%BA%E6%85%A7%E5%85%8B%E6%BC%8F%E5%AD%97/unit1.html" target="_blank" class="btn-main">智慧克漏字</a>
+        </div>
+    </div>
+
+    <div id="vocab" class="tab-content">
+        <div class="section-bar mt-0">影音</div>
+        <div class="button-group">
+            <a href="https://player.hle.com.tw/vpc/playlist.html?volume=%E7%AC%AC%E4%B8%80%E5%86%8AC%E7%89%88&autoplay=null&repeat=null&unit=L1" target="_blank" class="btn-main">單字片語聆聽</a>
+        </div>
+        <div class="section-bar">單字片語互動遊戲</div>
+        <div class="button-group">
+            <div class="combo-box">
+                <div class="combo-label">
+                    口說派 
+                    <span class="combo-note">(U5 Demo)</span>
+                </div>
+                <div class="sub-btn-group">
+                    <a href="https://qt.hle.com.tw/edisc3.html?tid=SPEAK_S_003&tt=Vivid&platform=Hanlin_Ebook" target="_blank" class="sub-btn">單片</a>
+                    <a href="https://qt.hle.com.tw/edisc3.html?tid=SPEAK_S_004&tt=Vivid&platform=Hanlin_Ebook" target="_blank" class="sub-btn">例句Ⅰ</a>
+                    <a href="https://qt.hle.com.tw/edisc3.html?tid=SPEAK_S_005&tt=Vivid&platform=Hanlin_Ebook" target="_blank" class="sub-btn">例句Ⅱ</a>
+                </div>
+            </div>
+            <a href="https://esthercpucpu.github.io/Hanlin-Choice-English-Vocabulary-blooket/" target="_blank" class="btn-main">Blooket</a>
+            <div class="combo-box">
+                <div class="combo-label">Quizlet</div>
+                <div class="sub-btn-group">
+                    <a href="https://quizlet.com/tw/1050757880/%E7%BF%B0%E6%9E%97%E6%8A%80%E9%AB%98%E8%8B%B1%E6%96%87c%E7%AC%AC%E4%B8%80%E5%86%8A_l1_%E5%96%AE%E5%AD%97%E6%95%99%E5%AD%B8-%E5%AE%8C%E6%95%B4%E7%89%88-flash-cards/?i=2y3oj6&x=1jqt" target="_blank" class="sub-btn">單片</a>
+                    <a href="https://quizlet.com/tw/1051149895/%E7%BF%B0%E6%9E%97%E6%8A%80%E9%AB%98%E8%8B%B1%E6%96%87c%E7%AC%AC%E4%B8%80%E5%86%8A_l1_%E5%96%AE%E5%AD%97%E4%BE%8B%E5%8F%A5%E7%B7%B4%E7%BF%92-flash-cards/?i=2y3oj6&x=1jqt" target="_blank" class="sub-btn">例句</a>
+                </div>
+            </div>
+            <a href="https://website.hle.com.tw/ven/B1/Word%20Game%20(all)/index.html" target="_blank" class="btn-main">Word Game</a>
+            <a href="https://website.hle.com.tw/ven/B1/Flash%20Card%20(all)/L1/card.html" target="_blank" class="btn-main">Flash Card</a>
+        </div>
+        <div class="section-bar">Word Corner 互動遊戲</div>
+        <div class="button-group">
+            <a href="https://qt.hle.com.tw/material.html?demo=true&entry=play-now&tt=Vivid&tid=114_1_VHE_TA_1_2&platform=Hanlin_Ebook" target="_blank" class="btn-main">Let‘s play</a>
+        </div>
+    </div>
+
+    <div id="grammar" class="tab-content">
+        <div class="section-bar mt-0">影音</div>
+        <div class="button-group">
+            <div class="combo-box">
+                <div class="combo-label">簡單式-句型簡單式補充影片</div>
+                <div class="sub-btn-group">
+                    <a href="https://youtu.be/2Vv-BfVoq4g?si=du0VgzjNP139SvEk" target="_blank" class="sub-btn">觀看影片</a>
+                    <a href="https://docs.google.com/document/d/1odFUaDIAS1IXAAyaHY4_vSODJMDaN61Z/edit" target="_blank" class="sub-btn">學習單</a>
+                </div>
+            </div>
+            <div class="combo-box">
+                <div class="combo-label">連綴動詞-句型補充影片</div>
+                <div class="sub-btn-group">
+                    <a href="https://youtu.be/06-XXOTP3Gc?si=V0TIbve_DyZ8VVVW" target="_blank" class="sub-btn">觀看影片</a>
+                    <a href="https://docs.google.com/document/d/1KdsNui9LsT4ipXfkGzX73wjUaf639mEC/edit" target="_blank" class="sub-btn">學習單</a>
+                </div>
+            </div>
+        </div>
+        <div class="section-bar">互動遊戲</div>
+        <div class="button-group">
+            <a href="https://wordwall.net/tc/resource/94285969/%E7%BF%B0%E6%9E%97/%E7%BF%B0%E6%9E%97b1-l1grammar-focus-1-%E7%B0%A1%E5%96%AE%E5%BC%8F" target="_blank" class="btn-main">Pop Quiz</a>
+        </div>
+    </div>
+
+    <div id="listening" class="tab-content">
+        <div class="section-bar mt-0">影音</div>
+        <div class="button-group">
+            <a href="https://player.hle.com.tw/vpc/playlist.html?volume=%E7%AC%AC%E4%B8%80%E5%86%8AC%E7%89%88&autoplay=null&repeat=null&unit=L1" target="_blank" class="btn-main">開始聆聽</a>
+        </div>
+    </div>
+
+    <div id="conversation" class="tab-content">
+        <div class="section-bar mt-0">影音</div>
+        <div class="button-group">
+            <div class="combo-box">
+                <div class="combo-label">對話動畫</div>
+                <div class="sub-btn-group">
+                    <a href="https://youtu.be/7UWOGxGvhAo?si=6ptdbvOK7kyLj7rU" target="_blank" class="sub-btn">無字幕</a>
+                    <a href="https://youtu.be/3duBmT-KOzs?si=Uq2LpI_ahvgt4ryp" target="_blank" class="sub-btn">雙語字幕</a>
+                    <a href="https://youtu.be/3hMI33kM7w0?si=O9jdF8Mn9L0HbBO5" target="_blank" class="sub-btn">英文字幕</a>
+                </div>
+            </div>
+            <a href="https://player.hle.com.tw/vpc/playlist.html?volume=%E7%AC%AC%E4%B8%80%E5%86%8AC%E7%89%88&autoplay=null&repeat=null&unit=L1" target="_blank" class="btn-main">對話聆聽</a>
+        </div>
+    </div>
+
+    <div id="others" class="tab-content">
+        <div class="section-bar mt-0">實用連結</div>
+        <div class="button-group">
+            <a href="https://edisc3.hle.com.tw/edisc_v3/index.html?t=591680046" target="_blank" class="btn-main">翰林行動大師</a>
+            <a href="https://qa-sh.hle.com.tw/vhc/" target="_blank" class="btn-main">翰林教材網</a>
+            <a href="https://vhc-selfstudy.hle.com.tw/index.html" target="_blank" class="btn-main">
+                自學Bar <span class="combo-note">(B2 Demo)</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabContent, tabLinks;
+            // 隱藏所有內容區塊並移除 active
+            tabContent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+                tabContent[i].classList.remove("active");
+            }
+            // 移除所有標籤的 active
+            tabLinks = document.getElementsByClassName("tab");
+            for (i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove("active");
+            }
+            // 顯示當前點擊的內容區塊並加上 active
+            document.getElementById(tabName).style.display = "block";
+            setTimeout(() => {
+                document.getElementById(tabName).classList.add("active");
+            }, 10);
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+
+</body>
+</html>
