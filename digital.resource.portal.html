@@ -7,19 +7,16 @@
     <style>
         :root {
             /* === 高級美式復古色盤 (Varsity Vintage) === */
-            --content-bg: #F4EFE6;       /* 網頁背景：溫暖奶油羊皮紙色 */
-            --color-a: #1E2D3B;          /* 大標題：復古海軍藍 (Oxford Blue) */
-            --color-b: #3D5A80;          /* 標籤列：復古藍色 */
-            --section-bg: #EAE3D3;       /* 區域底色：復古卡其/燕麥色 */
-            --section-border: #3D5A80;   /* 區域線條：復古藍色 */
-            
-            /* 按鈕配色：乾淨的復古橘色系 */
-            --btn-main: #D68C45;         /* 大按鈕/包覆底色：復古橘色 */
-            --btn-sub: #BE7634;          /* 小按鈕：調淺的焦糖橘，確保白字清晰 */
-            --radius: 6px;               /* 復古風圓角 */
+            --content-bg: #F4EFE6;       
+            --color-a: #1E2D3B;          
+            --color-b: #3D5A80;          
+            --section-bg: #EAE3D3;       
+            --section-border: #3D5A80;   
+            --btn-main: #D68C45;         
+            --btn-sub: #BE7634;          
+            --radius: 6px;               
         }
 
-        /* 全局設定 */
         body {
             font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
             background-color: var(--content-bg);
@@ -57,13 +54,12 @@
             padding: 8px 10px 0 10px;
             gap: 5px;
             border-radius: var(--radius) var(--radius) 0 0;
-            /* 讓標籤列在小螢幕時不會被壓縮，可以滾動 */
+            /* 讓標籤列在小螢幕時不會被壓縮，可以滑動 */
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
-        /* 隱藏滾動條，讓畫面更乾淨 */
         .tab-container::-webkit-scrollbar {
-            display: none;
+            display: none; /* 隱藏滾動條保持乾淨 */
         }
         .tab {
             padding: 12px 25px;
@@ -88,7 +84,7 @@
 
         /* 內容區塊 */
         .tab-content {
-            display: none; /* 預設全部隱藏 */
+            display: none; 
             padding: 30px 0;
         }
         .tab-content.active {
@@ -133,7 +129,6 @@
             box-shadow: 0 3px 6px rgba(0,0,0,0.15);
             border: none;
             letter-spacing: 1px;
-            text-align: center;
         }
         .btn-main:hover {
             transform: translateY(-2px);
@@ -163,7 +158,6 @@
             letter-spacing: 1px;
         }
         
-        /* 組合按鈕小字註明樣式 */
         .combo-note {
             font-size: 0.75rem;
             font-weight: normal;
@@ -177,7 +171,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            flex-wrap: wrap; /* 讓小按鈕在空間不夠時可以自動換行 */
         }
         
         /* 小按鈕樣式 */
@@ -192,8 +185,6 @@
             border: 1px solid rgba(244, 239, 230, 0.15);
             transition: all 0.2s;
             letter-spacing: 0.5px;
-            text-align: center;
-            flex-grow: 1; /* 讓小按鈕在手機上可以平均分配空間 */
         }
         .sub-btn:hover {
             background-color: #D68C45;
@@ -203,54 +194,59 @@
         .mt-0 { margin-top: 0; }
 
         /* =========================================
-           📱 RWD 響應式設計 (平板與手機版面優化)
+           📱 RWD 響應式設計 (精緻等比例縮小版)
            ========================================= */
-        @media (max-width: 768px) {
-            body {
-                padding: 20px 15px; /* 縮小螢幕四周的留白 */
-            }
-            .header {
-                margin-bottom: 25px;
-            }
-            .header h1 {
-                font-size: 2.2rem; /* 縮小主標題字體 */
-            }
-            .header h2 {
-                font-size: 1.1rem; /* 縮小副標題字體 */
-            }
-            .tab {
-                padding: 10px 18px; /* 稍微縮小標籤內的空間 */
-                font-size: 0.9rem;
-            }
-            .tab-content {
-                padding: 20px 0;
-            }
+        @media (max-width: 900px) {
+            /* 平板尺寸：開始微調字體與間距 */
+            .header h1 { font-size: 2.3rem; }
+            .btn-main { padding: 12px 24px; font-size: 0.95rem; }
+            .combo-label { padding: 10px 16px; font-size: 0.95rem; }
+            .sub-btn { padding: 7px 14px; font-size: 0.85rem; }
         }
 
         @media (max-width: 600px) {
-            .header h1 {
-                font-size: 1.8rem; /* 手機版再進一步縮小標題 */
+            /* 手機版：保留原排版，全面等比例縮小，不再強制變肥大堆疊 */
+            body { padding: 15px; }
+            .header { margin-bottom: 25px; border-left-width: 4px; padding-left: 12px; }
+            .header h1 { font-size: 1.6rem; margin-top: 2px; }
+            .header h2 { font-size: 0.9rem; }
+            
+            .tab-container { padding: 6px 8px 0 8px; gap: 4px; }
+            .tab { padding: 8px 14px; font-size: 0.85rem; }
+            .tab-content { padding: 20px 0; }
+            
+            .section-bar { padding: 8px 15px; font-size: 0.95rem; margin: 15px 0 10px 0; border-left-width: 4px; }
+            
+            .button-group { gap: 8px; flex-direction: row; }
+            
+            /* 按鈕精緻化縮小 */
+            .btn-main { 
+                padding: 8px 16px; 
+                font-size: 0.85rem; 
+                border-radius: 4px; 
             }
-            .button-group {
-                flex-direction: column; /* 將按鈕從水平排列變成上下堆疊 */
-                gap: 12px;
+            
+            .combo-box { 
+                border-radius: 4px; 
+                flex-wrap: wrap; /* 內容太多時自然換行，不強制拉伸 */
             }
-            .btn-main {
-                width: 100%; /* 獨立大按鈕佔滿寬度 */
-                box-sizing: border-box;
+            .combo-label { 
+                padding: 8px 12px; 
+                font-size: 0.85rem; 
+                border-right: 1px solid rgba(244, 239, 230, 0.2); 
             }
-            .combo-box {
-                flex-direction: column; /* 組合按鈕變成上下排：上標題、下按鈕 */
-                width: 100%;
+            .sub-btn-group { 
+                padding: 6px 10px; 
+                gap: 6px; 
             }
-            .combo-label {
-                border-right: none;
-                border-bottom: 1px solid rgba(244, 239, 230, 0.2); /* 分隔線從右邊移到底部 */
-                justify-content: center; /* 標題置中 */
+            .sub-btn { 
+                padding: 5px 10px; 
+                font-size: 0.8rem; 
+                border-radius: 3px; 
             }
-            .sub-btn-group {
-                justify-content: center;
-                padding: 12px;
+            .combo-note { 
+                font-size: 0.7rem; 
+                margin-left: 4px; 
             }
         }
     </style>
@@ -395,18 +391,15 @@
     <script>
         function openTab(evt, tabName) {
             var i, tabContent, tabLinks;
-            // 隱藏所有內容區塊並移除 active
             tabContent = document.getElementsByClassName("tab-content");
             for (i = 0; i < tabContent.length; i++) {
                 tabContent[i].style.display = "none";
                 tabContent[i].classList.remove("active");
             }
-            // 移除所有標籤的 active
             tabLinks = document.getElementsByClassName("tab");
             for (i = 0; i < tabLinks.length; i++) {
                 tabLinks[i].classList.remove("active");
             }
-            // 顯示當前點擊的內容區塊並加上 active
             document.getElementById(tabName).style.display = "block";
             setTimeout(() => {
                 document.getElementById(tabName).classList.add("active");
