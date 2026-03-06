@@ -25,16 +25,44 @@
             color: #2c3e50;
         }
 
+        /* 標題區樣式 */
         /* === 標題與課次選單佈局 === */
         .header-wrapper {
             display: flex;
-            justify-content: space-between; 
-            align-items: flex-end; 
+            justify-content: space-between; /* 這個魔法會讓標題靠左、按鈕靠右 */
+            align-items: flex-end; /* 讓它們底部對齊 */
             margin-bottom: 40px;
-            flex-wrap: wrap; 
+            flex-wrap: wrap; /* 螢幕不夠寬時自動折行往下掉 */
             gap: 20px;
         }
 
+        /* 課次切換導覽 (輕盈的底線風格) */
+        .unit-nav {
+            display: flex;
+            gap: 15px; 
+            flex-wrap: wrap;
+            margin-bottom: 5px; 
+            align-items: center;
+        }
+        .unit-btn {
+            padding: 4px 2px; 
+            color: var(--color-b);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid transparent; /* 預設為透明底線 */
+        }
+        .unit-btn:hover {
+            color: var(--color-a);
+            border-bottom: 2px solid var(--color-a); /* 滑鼠碰到時出現底線 */
+        }
+        .unit-btn.current {
+            color: var(--color-a);
+            border-bottom: 2px solid var(--color-a); /* 所在的頁面底線常駐 */
+            pointer-events: none; 
+        }
         .header {
             border-left: 6px solid var(--color-b);
             padding-left: 20px;
@@ -55,46 +83,19 @@
             letter-spacing: 0.5px;
         }
 
-        /* 課次切換導覽 (改為輕盈的底線風格) */
-        .unit-nav {
-            display: flex;
-            gap: 15px; /* 讓字與字之間有舒適的呼吸空間 */
-            flex-wrap: wrap;
-            margin-bottom: 5px; 
-            align-items: center;
-        }
-        .unit-btn {
-            padding: 4px 2px; /* 左右間距縮小，讓底線剛好貼齊文字寬度 */
-            color: var(--color-b);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: all 0.2s;
-            letter-spacing: 0.5px;
-            border-bottom: 2px solid transparent; /* 預設透明底線 */
-        }
-        .unit-btn:hover {
-            color: var(--color-a);
-            border-bottom: 2px solid var(--color-a); /* 滑鼠懸停時出現深藍底線 */
-        }
-        .unit-btn.current {
-            color: var(--color-a);
-            border-bottom: 2px solid var(--color-a); /* 當前頁面固定顯示深藍底線 */
-            pointer-events: none; 
-        }
-
-        /* === 標籤導覽列 === */
+        /* 標籤導覽列 */
         .tab-container {
             display: flex;
             background-color: var(--color-b);
             padding: 8px 10px 0 10px;
             gap: 5px;
             border-radius: var(--radius) var(--radius) 0 0;
+            /* 讓標籤列在小螢幕時不會被壓縮，可以滑動 */
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
         .tab-container::-webkit-scrollbar {
-            display: none; 
+            display: none; /* 隱藏滾動條保持乾淨 */
         }
         .tab {
             padding: 12px 25px;
@@ -105,7 +106,7 @@
             border-radius: var(--radius) var(--radius) 0 0;
             font-size: 0.95rem;
             letter-spacing: 1px;
-            white-space: nowrap; 
+            white-space: nowrap; /* 確保標籤文字不斷行 */
         }
         .tab:hover {
             color: #ffffff;
@@ -208,6 +209,7 @@
             gap: 8px;
         }
         
+        /* 小按鈕樣式 */
         .sub-btn {
             background-color: var(--btn-sub);
             color: #F4EFE6; 
@@ -231,23 +233,23 @@
            📱 RWD 響應式設計 (精緻等比例縮小版)
            ========================================= */
         @media (max-width: 900px) {
+            /* 平板尺寸：開始微調字體與間距 */
             .header h1 { font-size: 2.3rem; }
             .btn-main { padding: 12px 24px; font-size: 0.95rem; }
             .combo-label { padding: 10px 16px; font-size: 0.95rem; }
             .sub-btn { padding: 7px 14px; font-size: 0.85rem; }
-            .header-wrapper { align-items: flex-start; flex-direction: column; gap: 15px; } 
+            .header-wrapper { align-items: flex-start; flex-direction: column; gap: 15px; }
         }
 
         @media (max-width: 600px) {
+            /* 手機版：保留原排版，全面等比例縮小，不再強制變肥大堆疊 */
             body { padding: 15px; }
             .header-wrapper { margin-bottom: 25px; }
-            .header { border-left-width: 4px; padding-left: 12px; }
+            .unit-nav { gap: 12px; }
+            .unit-btn { font-size: 0.9rem; }
+            .header { margin-bottom: 25px; border-left-width: 4px; padding-left: 12px; }
             .header h1 { font-size: 1.6rem; margin-top: 2px; }
             .header h2 { font-size: 0.9rem; }
-            
-            /* 手機版微調導覽列距 */
-            .unit-nav { gap: 12px; }
-            .unit-btn { font-size: 0.9rem; } 
             
             .tab-container { padding: 6px 8px 0 8px; gap: 4px; }
             .tab { padding: 8px 14px; font-size: 0.85rem; }
@@ -257,13 +259,35 @@
             
             .button-group { gap: 8px; flex-direction: row; }
             
-            .btn-main { padding: 8px 16px; font-size: 0.85rem; border-radius: 4px; }
+            /* 按鈕精緻化縮小 */
+            .btn-main { 
+                padding: 8px 16px; 
+                font-size: 0.85rem; 
+                border-radius: 4px; 
+            }
             
-            .combo-box { border-radius: 4px; flex-wrap: wrap; }
-            .combo-label { padding: 8px 12px; font-size: 0.85rem; border-right: 1px solid rgba(244, 239, 230, 0.2); }
-            .sub-btn-group { padding: 6px 10px; gap: 6px; }
-            .sub-btn { padding: 5px 10px; font-size: 0.8rem; border-radius: 3px; }
-            .combo-note { font-size: 0.7rem; margin-left: 4px; }
+            .combo-box { 
+                border-radius: 4px; 
+                flex-wrap: wrap; /* 內容太多時自然換行，不強制拉伸 */
+            }
+            .combo-label { 
+                padding: 8px 12px; 
+                font-size: 0.85rem; 
+                border-right: 1px solid rgba(244, 239, 230, 0.2); 
+            }
+            .sub-btn-group { 
+                padding: 6px 10px; 
+                gap: 6px; 
+            }
+            .sub-btn { 
+                padding: 5px 10px; 
+                font-size: 0.8rem; 
+                border-radius: 3px; 
+            }
+            .combo-note { 
+                font-size: 0.7rem; 
+                margin-left: 4px; 
+            }
         }
     </style>
 </head>
@@ -303,7 +327,7 @@
                 <div class="sub-btn-group">
                     <a href="https://youtu.be/524IQMwhe8E?si=M8CqWhaoM4DVE9Lm" target="_blank" class="sub-btn">無字幕</a>
                     <a href="https://youtu.be/W2CjnSci3LE?si=-en0QjLXjNH7b7dC" target="_blank" class="sub-btn">雙語字幕</a>
-                    <a href="#" class="sub-btn">英文字幕(維修中)</a>
+                    <a href="https://youtu.be/uKBeLf2Oqis?si=eM1ONvOn8x8a1DDE" target="_blank" class="sub-btn">英文字幕</a>
                 </div>
             </div>
             <a href="https://player.hle.com.tw/vpc/playlist.html?volume=%E7%AC%AC%E4%B8%80%E5%86%8AC%E7%89%88&autoplay=null&repeat=null&unit=L1" target="_blank" class="btn-main">課文聆聽</a>
@@ -325,7 +349,7 @@
     </div>
 
     <div id="vocab" class="tab-content">
-        <div class="section-bar mt-0">影音</div>
+        <div class="section-bar mt-0">影音資源</div>
         <div class="button-group">
             <a href="https://player.hle.com.tw/vpc/playlist.html?volume=%E7%AC%AC%E4%B8%80%E5%86%8AC%E7%89%88&autoplay=null&repeat=null&unit=L1" target="_blank" class="btn-main">單字片語聆聽</a>
         </div>
@@ -360,39 +384,39 @@
     </div>
 
     <div id="grammar" class="tab-content">
-        <div class="section-bar mt-0">影音</div>
+        <div class="section-bar mt-0">影音資源</div>
         <div class="button-group">
             <div class="combo-box">
                 <div class="combo-label">簡單式-句型簡單式補充影片</div>
                 <div class="sub-btn-group">
                     <a href="https://youtu.be/2Vv-BfVoq4g?si=du0VgzjNP139SvEk" target="_blank" class="sub-btn">觀看影片</a>
-                    <a href="https://docs.google.com/document/d/1odFUaDIAS1IXAAyaHY4_vSODJMDaN61Z/edit" target="_blank" class="sub-btn">學習單</a>
+                    <a href="https://docs.google.com/document/d/1TTgpCGmjBG13_CsJKj6kjn6kFkGFpV3v/edit" target="_blank" class="sub-btn">學習單</a>
                 </div>
             </div>
             <div class="combo-box">
                 <div class="combo-label">連綴動詞-句型補充影片</div>
                 <div class="sub-btn-group">
                     <a href="https://youtu.be/06-XXOTP3Gc?si=V0TIbve_DyZ8VVVW" target="_blank" class="sub-btn">觀看影片</a>
-                    <a href="https://docs.google.com/document/d/1KdsNui9LsT4ipXfkGzX73wjUaf639mEC/edit" target="_blank" class="sub-btn">學習單</a>
+                    <a href="https://docs.google.com/document/d/1LqcMTao5QzcEvwx6D2Mb7EQRvrQ_AUjj/edit" target="_blank" class="sub-btn">學習單</a>
                 </div>
             </div>
         </div>
         <div class="section-bar">互動遊戲</div>
         <div class="button-group">
-            <a href="https://wordwall.net/tc/resource/94285969/%E7%BF%B0%E6%9E%97/%E7%BF%B0%E6%9E%97b1-l1grammar-focus-1-%E7%B0%A1%E5%96%AE%E5%BC%8F" target="_blank" class="btn-main">Pop Quiz</a>
-            <a href="https://wordwall.net/tc/resource/94286096/%E7%BF%B0%E6%9E%97/%E7%BF%B0%E6%9E%97b1-l1grammar-focus-2-%E9%80%A3%E7%B6%B4%E5%8B%95%E8%A9%9E" target="_blank" class="btn-main">連綴動詞Pop Quiz</a>
+            <a href="https://wordwall.net/tc/resource/94285969/%E7%BF%B0%E6%9E%97/%E7%BF%B0%E6%9E%97b1-l1grammar-focus-1-%E7%B0%A1%E5%96%AE%E5%BC%8F" target="_blank" class="btn-main">簡單式-Pop Quiz</a>
+            <a href="https://wordwall.net/tc/resource/94286096/%E7%BF%B0%E6%9E%97/%E7%BF%B0%E6%9E%97b1-l1grammar-focus-2-%E9%80%A3%E7%B6%B4%E5%8B%95%E8%A9%9E" target="_blank" class="btn-main">連綴動詞-Pop Quiz</a>
         </div>
     </div>
 
     <div id="listening" class="tab-content">
-        <div class="section-bar mt-0">影音</div>
+        <div class="section-bar mt-0">影音資源</div>
         <div class="button-group">
             <a href="https://player.hle.com.tw/vpc/playlist.html?volume=%E7%AC%AC%E4%B8%80%E5%86%8AC%E7%89%88&autoplay=null&repeat=null&unit=L1" target="_blank" class="btn-main">開始聆聽</a>
         </div>
     </div>
 
     <div id="conversation" class="tab-content">
-        <div class="section-bar mt-0">影音</div>
+        <div class="section-bar mt-0">影音資源</div>
         <div class="button-group">
             <div class="combo-box">
                 <div class="combo-label">對話動畫</div>
@@ -439,3 +463,6 @@
 
 </body>
 </html>
+
+
+
