@@ -288,6 +288,23 @@
                 font-size: 0.7rem; 
                 margin-left: 4px; 
             }
+            /* === 網頁底部版權宣告樣式 === */
+        footer {
+            text-align: center;
+            padding: 40px 0 20px 0; /* 上方留 40px 空間，下方留 20px */
+            font-size: 0.85rem;     /* 字體小一點比較精緻 */
+            color: var(--color-a);
+            opacity: 0.6;           /* 稍微透明一點，不要太搶戲 */
+            letter-spacing: 0.5px;
+            font-family: Georgia, serif; /* 使用襯線字體更有復古感 */
+        }
+
+        /* 手機版微調 */
+        @media (max-width: 600px) {
+            footer {
+                font-size: 0.75rem;
+                padding: 30px 10px 15px 10px;
+            }
         }
     </style>
 </head>
@@ -461,7 +478,9 @@
             evt.currentTarget.classList.add("active");
         }
     </script>
-
+<footer>
+       Content Copyright © 2026 Han Lin Publishing Co., Ltd. & Licensors. All Rights Reserved.
+    </footer>
 </body>
 </html>
 
