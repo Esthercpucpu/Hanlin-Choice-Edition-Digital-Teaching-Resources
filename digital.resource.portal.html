@@ -255,18 +255,64 @@
             .header-wrapper { align-items: flex-start; flex-direction: column; gap: 15px; }
         }
 
-        @media (max-width: 600px) {
-            body { padding: 15px; padding-bottom: 60px; }
-            .header-wrapper { margin-bottom: 25px; }
-            .header h1 { font-size: 1.6rem; }
-            .header h2 { font-size: 0.9rem; }
-            .unit-nav { gap: 12px; }
-            .unit-btn { font-size: 0.9rem; }
-            .tab { padding: 8px 14px; font-size: 0.85rem; }
-            .btn-main { padding: 8px 16px; font-size: 0.85rem; }
-            .combo-label { padding: 8px 12px; font-size: 0.85rem; }
-            footer { font-size: 0.65rem; padding: 6px 0; }
+       @media (max-width: 600px) {
+            /* 1. 增加整體的留白呼吸感 */
+            body { 
+                padding: 20px 15px 80px 15px; 
+            }
+            .header-wrapper { margin-bottom: 30px; }
+            .header h1 { font-size: 1.8rem; } /* 標題稍微放大一點點，比較大氣 */
+
+            /* 2. 標籤列優化 */
+            .tab { padding: 10px 16px; font-size: 0.85rem; }
+
+            /* 3. 按鈕群組改為「垂直整齊排列」 (核心修改！) */
+            .button-group { 
+                flex-direction: column; 
+                gap: 12px; /* 增加按鈕間的距離 */
+            }
+
+            /* 讓所有主按鈕與組合方塊一律等寬 */
+            .btn-main, .combo-box { 
+                width: 100%; 
+                box-sizing: border-box;
+                min-height: 50px; /* 統一高度 */
+            }
+
+            /* 4. 組合按鈕轉為上下結構：上標題、下按鈕 */
+            .combo-box { 
+                flex-direction: column; 
+                height: auto;
+            }
+            .combo-label { 
+                border-right: none; 
+                border-bottom: 1px solid rgba(244, 239, 230, 0.2); 
+                justify-content: center; /* 標題置中 */
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            .sub-btn-group { 
+                padding: 12px; 
+                gap: 8px;
+                display: grid; /* 使用網格讓子按鈕自動平均分配 */
+                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            }
+            .sub-btn { 
+                padding: 8px 4px; 
+                font-size: 0.8rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* 5. 修正底部宣告在手機上的比例 */
+            footer { 
+                font-size: 0.65rem; 
+                padding: 10px 5px; 
+                line-height: 1.4;
+            }
         }
+
     </style>
 </head>
 <body>
